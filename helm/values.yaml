@@ -1,0 +1,11 @@
+replicaCount: 2
+
+image:
+  repository: devops-app
+  tag: local
+  pullPolicy: IfNotPresent
+
+service:
+  type: ClusterIP
+  port: 8080        
+  targetPort: 8080  
