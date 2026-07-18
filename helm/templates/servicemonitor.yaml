@@ -1,0 +1,15 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: {{ .Release.Name }}-servicemonitor
+  labels:
+    # Kluczowa etykieta: dzięki niej Prometheus wie, że ma pilnować tego zasobu
+    release: monitoring
+spec:
+  selector:
+    matchLabels:
+      app: {{ .Release.Name }}
+  endpoints:
+    - port: http
+      path: /metrics
+      interval: 15s  # Jak często Prometheus ma pobierać metryki
