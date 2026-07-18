@@ -11,18 +11,18 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout code
-      uses: actions/checkout@v4
+      uses: actions/checkout@v4     # cloning ur repo to VM 
 
     - name: Set up Docker Buildx    
-      uses: docker/setup-buildx-action@v3
+      uses: docker/setup-buildx-action@v3   #install odcker buildx to build ur images more efficiently
 
-    - name: Build Docker Image
+    - name: Build Docker Image  
       uses: docker/build-push-action@v5
       with:
         context: ./app
         file: ./app/Dockerfile
         tags: devops-app:latest
-        outputs: type=docker,dest=/tmp/myimage.tar
+        outputs: type=docker,dest=/tmp/myimage.tar  #packing docker img into .tar file
 
     - name: Load Docker Image
       run: docker load --input /tmp/myimage.tar
